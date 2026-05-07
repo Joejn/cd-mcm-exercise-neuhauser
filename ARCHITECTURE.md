@@ -1,18 +1,16 @@
-# Übung 2
-
-## Aufgabe 1
+# Aufgabe 1
 
 Die API ist in mehrere Schichten aufgeteilt. Jede Schicht hat dabei eine bestimmte Aufgabe.
 
-### Handler
+## Handler
 
 Die Handler kümmern sich um eingehende Requests. Dabei werden die Requests auf ihre Gültigkeit geprüft. Wenn ein Request gültig ist, werden über die Stores Daten abgefragt bzw. gespeichert.
 
-### Store
+## Store
 
 Stores bilden die Abstraktionsebene zur Datenpersistierung. Sie sind dafür verantwortlich, Daten zu lesen bzw. zu schreiben.
 
-### Model
+## Model
 
 Modelle werden in den verschiedenen Schichten verwendet. Sie repräsentieren Ressourcen.
 

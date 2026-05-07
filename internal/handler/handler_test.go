@@ -77,8 +77,6 @@ func TestGetProductNotFound(t *testing.T) {
 	}
 }
 
-// TODO: Add tests for UpdateProduct, DeleteProduct, and invalid payloads
-
 func TestUpdateProduct(t *testing.T) {
 	r, _ := setupRouter()
 

@@ -1,6 +1,6 @@
 # Exercise 2: Microservice Architecture, Docker & GitHub Actions
 
-[![CI](https://github.com/Joejn/cd-mcm-exercise-neuhauser/actions/workflows/ci.yml/badge.svg)](https://github.com/Joejn/cd-mcm-exercise-neuhauser/actions/workflows/ci.yml)
+[![CI](https://github.com/Joejn/cd-mcm-exercise-neuhauser/actions/workflows/main.yml/badge.svg)](https://github.com/Joejn/cd-mcm-exercise-neuhauser/actions/workflows/main.yml)
 
 **Course:** Continuous Delivery in Agile Software Development (Master)
 **Points:** 24

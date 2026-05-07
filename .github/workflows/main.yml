@@ -52,7 +52,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.REGISTRY_IMAGE }}
+          images: ghcr.io/${{ github.repository }}/product-catalog
 
       - name: Build Docker Container
         id: push
@@ -60,8 +60,8 @@ jobs:
         with:
           context: .
           tags: |
-            product-catalog:${{ github.sha }}
-            ${{ steps.meta.outputs.tags }}
+            ghcr.io/${{ github.repository }}/product-catalog:${{ github.sha }}
+            ghcr.io/${{ github.repository }}/product-catalog:latest
           # push: true
           push: ${{ github.ref == 'refs/heads/main' }}
 

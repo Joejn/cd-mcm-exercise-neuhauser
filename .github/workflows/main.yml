@@ -52,7 +52,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ github.repository }}/product-catalog
+          images: ghcr.io/joejn/cd-mcm-exercise-neuhauser/product-catalog
 
       - name: Build Docker Container
         id: push
@@ -60,9 +60,7 @@ jobs:
         with:
           context: .
           tags: |
-            ghcr.io/${{ github.repository }}/product-catalog:${{ github.sha }}
-            ghcr.io/${{ github.repository }}/product-catalog:latest
+            ghcr.io/joejn/cd-mcm-exercise-neuhauser/product-catalog:${{ github.sha }}
+            ghcr.io/joejn/cd-mcm-exercise-neuhauser/product-catalog:latest
           # push: true
           push: ${{ github.ref == 'refs/heads/main' }}
-
-  # TODO: Add docker-build job that builds and tags the Docker image

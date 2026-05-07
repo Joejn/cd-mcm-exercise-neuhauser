@@ -6,14 +6,9 @@ env:
 
 on:
   push:
-    branches: ["**"]
+    branches: [main]
   pull_request:
-
-# on:
-#   push:
-#     branches: [main]
-#   pull_request:
-#     branches: [main]
+    branches: [main]
 
 jobs:
   test:

@@ -48,11 +48,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Get Docker Metadata
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ghcr.io/joejn/cd-mcm-exercise-neuhauser/product-catalog
+      # - name: Get Docker Metadata
+      #   id: meta
+      #   uses: docker/metadata-action@v5
+      #   with:
+      #     images: ghcr.io/joejn/cd-mcm-exercise-neuhauser/product-catalog
 
       - name: Build Docker Container
         id: push
@@ -60,7 +60,7 @@ jobs:
         with:
           context: .
           tags: |
-            ghcr.io/joejn/cd-mcm-exercise-neuhauser/product-catalog:${{ github.sha }}
-            ghcr.io/joejn/cd-mcm-exercise-neuhauser/product-catalog:latest
+            ghcr.io/${{ github.repository_owner }}/cd-mcm-exercise-neuhauser/product-catalog:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/cd-mcm-exercise-neuhauser/product-catalog:latest
           # push: true
           push: ${{ github.ref == 'refs/heads/main' }}

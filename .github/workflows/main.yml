@@ -61,5 +61,5 @@ jobs:
           tags: |
             ghcr.io/joejn/cd-mcm-exercise-neuhauser/product-catalog:${{ github.sha }}
             ghcr.io/joejn/cd-mcm-exercise-neuhauser/product-catalog:latest
-          # push: true
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: true
+          # push: ${{ github.ref == 'refs/heads/main' }}

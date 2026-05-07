@@ -16,6 +16,13 @@ Modelle werden in den verschiedenen Schichten verwendet. Sie repräsentieren Res
 
 Das folgende Diagramm zeigt den Ablauf eines Requests bis zur Datenbank.
 
-![Ablauf eines Requests](./assets/task_02.png)
+![Ablauf eines Requests](./assets/task_01.png)
 
 Es gibt zwei Stores: eine In-Memory-Version und eine Datenbank-Version. Die In-Memory-Version eignet sich gut zum Testen, da dabei die Abhängigkeit zu externen Systemen reduziert wird. Die Datenbank-Version ist für den produktiven Einsatz gedacht, da sie die Daten dauerhaft speichert.
+
+# Aufgabe 2
+
+## Ergebnis
+
+![Ergebnis von Aufgabe 2](./assets/task_02.png)
+![Docker Image von Aufgabe 2](./assets/task_02_docker.png)

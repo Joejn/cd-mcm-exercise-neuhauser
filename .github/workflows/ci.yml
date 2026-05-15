@@ -75,9 +75,6 @@ jobs:
           name: coverage-1.26-ubuntu-latest
           path: .
 
-      - name: Verify coverage file
-        run: ls -lah && cat coverage.out
-
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:

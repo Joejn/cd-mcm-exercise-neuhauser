@@ -80,11 +80,17 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+      - name: Wait for Sonar Quality Gate
+        uses: SonarSource/sonarqube-quality-gate-action@v1
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   docker-build:
     runs-on: ubuntu-latest
     needs:
       - test
       - lint
+      - sonarcloud
 
     steps:
       - uses: actions/checkout@v4

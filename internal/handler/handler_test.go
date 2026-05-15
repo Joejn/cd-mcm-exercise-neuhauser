@@ -161,3 +161,65 @@ func TestCreateInvalidProduct(t *testing.T) {
 		t.Errorf("expected 400, got %d", rr.Code)
 	}
 }
+
+func TestCreateProductWithInvalidRequest(t *testing.T) {
+	r, _ := setupRouter()
+
+	// Create
+	body := `{"name":"Widget","price":NaN}`
+	req := httptest.NewRequest("POST", "/products", strings.NewReader(body))
+	rr := httptest.NewRecorder()
+	r.ServeHTTP(rr, req)
+
+	if rr.Code != http.StatusBadRequest {
+		t.Errorf("expected 400, got %d", rr.Code)
+	}
+}
+
+func TestUpdateProductWithInvalidRequest(t *testing.T) {
+	r, _ := setupRouter()
+
+	// Create
+	body := `{"name":"Widget","price":9.99}`
+	req := httptest.NewRequest("POST", "/products", strings.NewReader(body))
+	rr := httptest.NewRecorder()
+	r.ServeHTTP(rr, req)
+
+	if rr.Code != http.StatusCreated {
+		t.Errorf("expected 201, got %d", rr.Code)
+	}
+
+	// Update
+	body = `{"name":"Widget","price":NaN}`
+	req = httptest.NewRequest("PUT", "/products/1", strings.NewReader(body))
+	rr = httptest.NewRecorder()
+	r.ServeHTTP(rr, req)
+
+	if rr.Code != http.StatusBadRequest {
+		t.Errorf("expected 400, got %d", rr.Code)
+	}
+}
+
+func TestUpdateNotExisitingProduct(t *testing.T) {
+	r, _ := setupRouter()
+
+	// Create
+	body := `{"name":"Widget","price":9.99}`
+	req := httptest.NewRequest("POST", "/products", strings.NewReader(body))
+	rr := httptest.NewRecorder()
+	r.ServeHTTP(rr, req)
+
+	if rr.Code != http.StatusCreated {
+		t.Errorf("expected 201, got %d", rr.Code)
+	}
+
+	// Update
+	body = `{"name":"Widget","price":19.99}`
+	req = httptest.NewRequest("PUT", "/products/2", strings.NewReader(body))
+	rr = httptest.NewRecorder()
+	r.ServeHTTP(rr, req)
+
+	if rr.Code != http.StatusNotFound {
+		t.Errorf("expected 404, got %d", rr.Code)
+	}
+}

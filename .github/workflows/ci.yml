@@ -58,7 +58,7 @@ jobs:
       - name: Run golangci-lint
         uses: golangci/golangci-lint-action@v4
         with:
-          version: v9.2.0
+          version: v2.12.2
           args: --config=.golangci.yml
 
   docker-build:

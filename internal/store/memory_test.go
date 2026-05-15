@@ -106,5 +106,3 @@ func TestDeleteExisting(t *testing.T) {
 		t.Errorf("expected ErrNotFound after delete, got %v", err)
 	}
 }
-
-// TODO: Add tests for Update, Delete of existing product, and GetByID with invalid ID

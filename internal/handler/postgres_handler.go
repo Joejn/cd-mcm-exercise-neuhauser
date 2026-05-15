@@ -25,9 +25,11 @@ func (h *PostgresHandler) RegisterRoutes(r *mux.Router) {
 	r.HandleFunc("/health", h.Health).Methods("GET")
 	r.HandleFunc("/products", h.GetProducts).Methods("GET")
 	r.HandleFunc("/products", h.CreateProduct).Methods("POST")
-	r.HandleFunc("/products/{id:[0-9]+}", h.GetProduct).Methods("GET")
-	r.HandleFunc("/products/{id:[0-9]+}", h.UpdateProduct).Methods("PUT")
-	r.HandleFunc("/products/{id:[0-9]+}", h.DeleteProduct).Methods("DELETE")
+
+	itemPaht := "/products/{id:[0-9]+}"
+	r.HandleFunc(itemPaht, h.GetProduct).Methods("GET")
+	r.HandleFunc(itemPaht, h.UpdateProduct).Methods("PUT")
+	r.HandleFunc(itemPaht, h.DeleteProduct).Methods("DELETE")
 }
 
 func (h *PostgresHandler) Health(w http.ResponseWriter, r *http.Request) {

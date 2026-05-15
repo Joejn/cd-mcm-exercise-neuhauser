@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
+	// Need import for driver
 	_ "github.com/lib/pq"
 	"github.com/mrckurz/CI-CD-MCM/internal/model"
 )

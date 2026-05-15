@@ -21,7 +21,6 @@ jobs:
       matrix:
         go-version: ["1.25", "1.26"]
         os: ["ubuntu-latest", "macos-latest"]
-        # TODO: Add go-version "1.25" to the matrix for multi-version testing
 
     steps:
       - uses: actions/checkout@v4

@@ -6,7 +6,8 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 
-COPY . .
+COPY ./cmd .
+COPY ./internal .
 RUN CGO_ENABLED=0 GOOS=linux go build -o /api-server ./cmd/api
 
 # Runtime stage
@@ -14,8 +15,14 @@ FROM alpine:3.19
 
 RUN apk --no-cache add ca-certificates
 
+RUN adduser -D -g '' appuser
+
 WORKDIR /app
 COPY --from=builder /api-server .
+
+RUN chown -R appuser:appuser /app
+
+USER appuser
 
 EXPOSE 8080
 

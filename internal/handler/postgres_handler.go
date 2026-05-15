@@ -10,6 +10,8 @@ import (
 	"github.com/mrckurz/CI-CD-MCM/internal/store"
 )
 
+const PRODUCT_NOT_FOUND_TEXT = "Product not found"
+
 // PostgresHandler holds the dependencies for PostgreSQL-backed HTTP handlers.
 type PostgresHandler struct {
 	Store *store.PostgresStore
@@ -53,7 +55,7 @@ func (h *PostgresHandler) GetProduct(w http.ResponseWriter, r *http.Request) {
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 	p, err := h.Store.GetByID(id)
 	if err != nil {
-		respondError(w, http.StatusNotFound, "Product not found")
+		respondError(w, http.StatusNotFound, PRODUCT_NOT_FOUND_TEXT)
 		return
 	}
 	respondJSON(w, http.StatusOK, p)
@@ -91,7 +93,7 @@ func (h *PostgresHandler) UpdateProduct(w http.ResponseWriter, r *http.Request) 
 
 	updated, err := h.Store.Update(id, p)
 	if err != nil {
-		respondError(w, http.StatusNotFound, "Product not found")
+		respondError(w, http.StatusNotFound, PRODUCT_NOT_FOUND_TEXT)
 		return
 	}
 	respondJSON(w, http.StatusOK, updated)
@@ -100,7 +102,7 @@ func (h *PostgresHandler) UpdateProduct(w http.ResponseWriter, r *http.Request) 
 func (h *PostgresHandler) DeleteProduct(w http.ResponseWriter, r *http.Request) {
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 	if err := h.Store.Delete(id); err != nil {
-		respondError(w, http.StatusNotFound, "Product not found")
+		respondError(w, http.StatusNotFound, PRODUCT_NOT_FOUND_TEXT)
 		return
 	}
 	respondJSON(w, http.StatusOK, map[string]string{"result": "success"})

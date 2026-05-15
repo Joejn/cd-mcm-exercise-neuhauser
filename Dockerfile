@@ -13,9 +13,8 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /api-server ./cmd/api
 # Runtime stage
 FROM alpine:3.19
 
-RUN apk --no-cache add ca-certificates
-
-RUN adduser -D -g '' appuser
+RUN apk --no-cache add ca-certificates \
+    && adduser -D -g '' appuser
 
 WORKDIR /app
 COPY --from=builder /api-server .

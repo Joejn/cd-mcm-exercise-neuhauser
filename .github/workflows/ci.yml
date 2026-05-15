@@ -36,11 +36,16 @@ jobs:
       - name: Run tests with coverage
         run: go test -v -coverprofile=coverage.out ./...
 
+      - name: Create HTML Report
+        run: go tool cover -html coverage.out -o coverage.html
+
       - name: Upload coverage artifact
         uses: actions/upload-artifact@v4
         with:
           name: coverage-${{ matrix.go-version }}-${{ matrix.os }}
-          path: coverage.out
+          path: |
+            coverage.out
+            coverage.html
 
       - name: Build
         run: go build -o api-server ./cmd/api

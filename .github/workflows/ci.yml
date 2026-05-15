@@ -38,7 +38,7 @@ jobs:
       - name: Upload coverage artifact
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-${{ matrix.go-version }}-${{matrix.os}}.out
+          name: coverage-${{ matrix.go-version }}-${{ matrix.os }}
           path: coverage.out
 
       - name: Build
@@ -70,7 +70,11 @@ jobs:
       - name: Download coverage artifact
         uses: actions/download-artifact@v4
         with:
-          name: coverage-1.26-ubuntu-latest.out
+          name: coverage-1.26-ubuntu-latest
+          path: .
+
+      - name: Verify coverage file
+        run: ls -lah && cat coverage.out
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v6

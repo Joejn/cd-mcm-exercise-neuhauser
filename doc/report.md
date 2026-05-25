@@ -1,4 +1,4 @@
-# Exercise Security K8s
+# Exercise Vulnerability Scanning & Kubernetes Deployment
 
 **Name:** Jonas Neuhauser
 

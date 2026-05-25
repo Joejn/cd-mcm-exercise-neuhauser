@@ -10,3 +10,14 @@ Im Scann ist zu sehen, dass es 3 kleine, 5 mittlere und 2 Große Sicherheitslüc
 
 **Mit dem Image Scratch als Baseimage**
 ![Trviy Scann](./assets/task_01_02.png)
+
+## Aufgabe 2
+
+### govulncheck Ergebnis
+
+**Vor den Verbesserungen**
+![Aufgabe 2 vor den Verbesserungen](./assets/task_02_01.png)
+
+**Nach den Verbesserungen**
+![Aufgabe 2 nach den Verbesserungen](./assets/task_02_02.png)
+

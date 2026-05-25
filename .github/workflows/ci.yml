@@ -57,12 +57,37 @@ jobs:
           push: false
           tags: product-catalog:${{ github.sha }}
 
-  # TODO: Add sonarcloud job
-  # Hint: Use the SonarSource/sonarqube-scan-action or sonarcloud-github-action
-  # You will need to configure sonar-project.properties
+      - name: Export Docker image
+        run: docker save product-catalog:${{ github.sha }} -o product-catalog.tar
 
-  # TODO: Add vulnerability-scan job using govulncheck
-  # Hint: Install with "go install golang.org/x/vuln/cmd/govulncheck@latest"
+      - name: Upload docker image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: product-catalog-docker
+          path: product-catalog.tar
 
-  # TODO: Add trivy-scan job for Docker image vulnerability scanning
-  # Hint: Use aquasecurity/trivy-action@master after the docker-build job
+  trivy-scan:
+    name: Trivy Scan
+    runs-on: ubuntu-latest
+    needs: docker-build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download docker image
+        uses: actions/download-artifact@v5
+        with:
+          name: product-catalog-docker
+
+      - name: Load Docker image
+        run: docker load -i product-catalog.tar
+        
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: product-catalog:${{ github.sha }}
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'

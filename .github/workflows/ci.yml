@@ -97,6 +97,7 @@ jobs:
           path: trivy-report.json
       
   govulncheck:
+    name: govulncheck Scan
     runs-on: ubuntu-latest
     needs: test
     steps:

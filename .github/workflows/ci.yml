@@ -39,9 +39,6 @@ jobs:
       - name: Build
         run: go build -o api-server ./cmd/api
 
-  # TODO: Add lint job using golangci-lint
-  # Hint: Use the golangci/golangci-lint-action@v4 action
-
   docker-build:
     runs-on: ubuntu-latest
     needs: test
@@ -58,9 +55,7 @@ jobs:
           context: .
           push: false
           tags: product-catalog:${{ github.sha }}
-
-      - name: Export Docker image
-        run: docker save product-catalog:${{ github.sha }} -o product-catalog.tar
+          outputs: type=docker,dest=product-catalog.tar
 
       - name: Upload docker image artifact
         uses: actions/upload-artifact@v4

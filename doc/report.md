@@ -18,6 +18,8 @@ Im Scann ist zu sehen, dass es 3 kleine, 5 mittlere und 2 Große Sicherheitslüc
 **Vor den Verbesserungen**
 ![Aufgabe 2 vor den Verbesserungen](./assets/task_02_01.png)
 
+**Verbesserungen:** Die Go Version in go.mod ist auf `1.26.3` gesetzte geworden.
+
 **Nach den Verbesserungen**
 ![Aufgabe 2 nach den Verbesserungen](./assets/task_02_02.png)
 
